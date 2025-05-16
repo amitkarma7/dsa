@@ -1,12 +1,14 @@
 package trees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class BinaryTree {
    static int idx = -1;
-    class Node {
-        private int data;
+    public static  class Node  {
+        int data;
         Node left;
         Node right;
 
@@ -151,33 +153,44 @@ public class BinaryTree {
 
 
 
-
-
     public static void main(String[] args) {
-        int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        int nodes[] = {5,8,9,2,1,3,7,4,6};
         if(Integer.valueOf(1)==null) {
 
         }
         BinaryTree binaryTree =new BinaryTree();
         Node root =  binaryTree.buildTree(nodes);
-        System.out.println("Print Pre Order");
-        binaryTree.preOrder(root);
-        System.out.println("\nPrint In Order");
-        binaryTree.inOrder(root);
-        System.out.println("\nPrint Post Order");
-        binaryTree.postOrder(root);
+//        System.out.println("Print Pre Order");
+//        binaryTree.preOrder(root);
+//        System.out.println("\nPrint In Order");
+//        binaryTree.inOrder(root);
+//        System.out.println("\nPrint Post Order");
+//        binaryTree.postOrder(root);
+//
+//        System.out.println("\nPrint level Order");
+//        binaryTree.levelOrder(root);
+//
+//        System.out.println("\nPrint count nodes "  + binaryTree.countOfNodes(root));
+//        System.out.println("\nPrint Sum nodes "  + binaryTree.sumOfNodes(root));
+//
+//        System.out.println("\nPrint heightOfNode "  + binaryTree.heightOfNode(root));
+//        System.out.println("\nPrint diameter "  + binaryTree.diameter(root));
+//
+//        System.out.println("\nPrint diameter 2 "  + binaryTree.diameter2(root));
 
-        System.out.println("\nPrint level Order");
-        binaryTree.levelOrder(root);
 
-        System.out.println("\nPrint count nodes "  + binaryTree.countOfNodes(root));
-        System.out.println("\nPrint Sum nodes "  + binaryTree.sumOfNodes(root));
+    }
+    int min = Integer.MAX_VALUE;
+    Integer prev = null;
+    public int getMinimumDifference(Node root) {
+        if(root== null) return min;
+        getMinimumDifference(root.left);
+        if (prev != null) {
+            min = Math.min(min, root.data - prev);
+        }
+        prev = root.data;
+        getMinimumDifference(root.right);
 
-        System.out.println("\nPrint heightOfNode "  + binaryTree.heightOfNode(root));
-        System.out.println("\nPrint diameter "  + binaryTree.diameter(root));
-
-        System.out.println("\nPrint diameter 2 "  + binaryTree.diameter2(root));
-
-
+        return min;
     }
 }
